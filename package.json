@@ -1,0 +1,20 @@
+{
+  "name": "shopping-mall",
+  "version": "2.0.0",
+  "description": "Professional E-commerce Website | Bangladesh",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@supabase/supabase-js": "^2.39.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
