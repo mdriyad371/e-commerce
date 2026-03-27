@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="description" content="ShoppingMall.Com - Bangladesh's premier online shopping destination">
+    <title>ShoppingMall.Com | বাংলাদেশের অনলাইন শপ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="logo" id="logoHome">
+                <i class="fas fa-store"></i>
+                <span>Shopping<span class="logo-highlight">Mall</span></span>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn cart-btn" id="cartIconBtn" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="cart-badge">0</span>
+                </button>
+                <button class="icon-btn user-btn" id="userBtn" aria-label="Account">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>বাংলাদেশের <span class="gradient-text">প্রিমিয়াম</span> শপিং ডেস্টিনেশন</h1>
+            <p>সেরা দামে সেরা পণ্য | ফ্রি ডেলিভারি* | ১০০% অরিজিনাল</p>
+            <div class="hero-stats">
+                <div class="stat"><i class="fas fa-truck"></i> <span>ফাস্ট ডেলিভারি</span></div>
+                <div class="stat"><i class="fas fa-shield-alt"></i> <span>নিরাপদ পেমেন্ট</span></div>
+                <div class="stat"><i class="fas fa-headset"></i> <span>২৪/৭ সাপোর্ট</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main class="main">
+    <div class="container">
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="পণ্য খুঁজুন...">
+            </div>
+            <div class="filter-group">
+                <select id="categoryFilter">
+                    <option value="all">সব বিভাগ</option>
+                    <option value="clothing">👕 পোশাক</option>
+                    <option value="electronics">📱 ইলেকট্রনিক্স</option>
+                    <option value="accessories">🕶️ এক্সেসরিজ</option>
+                </select>
+                <select id="sortSelect">
+                    <option value="default">সাজান</option>
+                    <option value="price_asc">দাম: কম থেকে বেশি</option>
+                    <option value="price_desc">দাম: বেশি থেকে কম</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Products Grid -->
+        <div class="products-grid" id="productsContainer">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>পণ্য লোড হচ্ছে...</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-store"></i> ShoppingMall</h3>
+                <p>বাংলাদেশের সবচেয়ে বিশ্বস্ত অনলাইন শপিং প্ল্যাটফর্ম।</p>
+            </div>
+            <div class="footer-section">
+                <h4>কুইক লিংক</h4>
+                <ul>
+                    <li><a href="#" data-nav="home">হোম</a></li>
+                    <li><a href="#" data-nav="wishlist">উইশলিস্ট</a></li>
+                    <li><a href="#" data-nav="orders">অর্ডার</a></li>
+                    <li><a href="#" data-nav="profile">প্রোফাইল</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>যোগাযোগ</h4>
+                <p><i class="fas fa-phone"></i> ০১৭XXXXXXXX</p>
+                <p><i class="fas fa-envelope"></i> support@shoppingmall.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ShoppingMall.Com | সর্বস্বত্ব সংরক্ষিত</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bottom Navigation (Mobile) -->
+<div class="bottom-nav" id="bottomNav">
+    <button class="nav-item" data-nav="home"><i class="fas fa-home"></i><span>হোম</span></button>
+    <button class="nav-item" data-nav="wishlist"><i class="fas fa-heart"></i><span>উইশলিস্ট</span></button>
+    <button class="nav-item" data-nav="orders"><i class="fas fa-truck"></i><span>অর্ডার</span></button>
+    <button class="nav-item" data-nav="profile"><i class="fas fa-user"></i><span>প্রোফাইল</span></button>
+</div>
+
+<!-- Modals (Same as before) -->
+<div id="loginModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>🔐 লগইন করুন</h3>
+            <button class="modal-close" id="closeLoginModal">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>ইমেইল</label>
+            <input type="email" id="modalLoginEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+            <label>পাসওয়ার্ড</label>
+            <input type="password" id="modalLoginPassword" placeholder="******">
+        </div>
+        <button id="modalLoginBtn" class="btn btn-primary btn-block">লগইন করুন</button>
+        <p class="demo-info">📱 ডেমো: demo@mall.com / 1234</p>
+        <p class="admin-info">👑 অ্যাডমিন: admin@shoppingmall.com / Admin123!</p>
+        <button id="modalSwitchToRegister" class="btn-link">✨ নতুন অ্যাকাউন্ট তৈরি করুন</button>
+    </div>
+</div>
+
+<div id="registerModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📝 রেজিস্ট্রেশন</h3>
+            <button class="modal-close" id="closeRegisterModal">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>আপনার নাম</label>
+            <input type="text" id="regName" placeholder="আপনার নাম">
+        </div>
+        <div class="form-group">
+            <label>ইমেইল</label>
+            <input type="email" id="regEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+            <label>পাসওয়ার্ড</label>
+            <input type="password" id="regPassword" placeholder="******">
+        </div>
+        <div class="form-group">
+            <label>পাসওয়ার্ড নিশ্চিত করুন</label>
+            <input type="password" id="regConfirmPassword" placeholder="******">
+        </div>
+        <button id="registerSubmitBtn" class="btn btn-primary btn-block">রেজিস্ট্রার করুন</button>
+        <button id="modalSwitchToLogin" class="btn-link">🔑 ইতিমধ্যে অ্যাকাউন্ট আছে?</button>
+    </div>
+</div>
+
+<div id="cartModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-shopping-cart"></i> আমার কার্ট</h3>
+            <button class="modal-close" id="closeCart">&times;</button>
+        </div>
+        <div id="cartItemsList"></div>
+        <div id="cartSummary"></div>
+        <button id="checkoutBtn" class="btn btn-primary btn-block">🚚 চেকআউট</button>
+    </div>
+</div>
+
+<div id="checkoutModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-truck"></i> ডেলিভারি তথ্য</h3>
+            <button class="modal-close" id="closeCheckout">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>পূর্ণ নাম</label>
+            <input id="deliveryName" placeholder="আপনার নাম">
+        </div>
+        <div class="form-group">
+            <label>মোবাইল নম্বর</label>
+            <input id="deliveryPhone" placeholder="01XXXXXXXXX">
+        </div>
+        <div class="form-group">
+            <label>বিভাগ</label>
+            <select id="deliveryDivision">
+                <option value="">বিভাগ নির্বাচন করুন</option>
+                <option value="ঢাকা">ঢাকা</option>
+                <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                <option value="রাজশাহী">রাজশাহী</option>
+                <option value="খুলনা">খুলনা</option>
+                <option value="বরিশাল">বরিশাল</option>
+                <option value="সিলেট">সিলেট</option>
+                <option value="রংপুর">রংপুর</option>
+                <option value="ময়মনসিংহ">ময়মনসিংহ</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>জেলা</label>
+            <select id="deliveryDistrict" disabled>
+                <option value="">প্রথমে বিভাগ নির্বাচন করুন</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>ঠিকানা</label>
+            <textarea id="deliveryAddress" rows="2" placeholder="বাড়ি নং, রোড, থানা"></textarea>
+        </div>
+        <div class="delivery-fee-info" id="deliveryFeeInfo">
+            <i class="fas fa-info-circle"></i> ডেলিভারি চার্জ: জেলা নির্বাচনের পরে দেখানো হবে
+        </div>
+        <div class="form-group">
+            <label>পেমেন্ট পদ্ধতি</label>
+            <select id="paymentMethod">
+                <option value="cod">💵 ক্যাশ অন ডেলিভারি</option>
+                <option value="bkash">📱 bKash</option>
+                <option value="nagad">📱 Nagad</option>
+                <option value="rocket">📱 Rocket</option>
+            </select>
+        </div>
+        <div id="accountInfoPanel" class="payment-info" style="display:none;">
+            <div id="accountDetails"></div>
+            <div class="form-group">
+                <label>সেন্ডার নম্বর</label>
+                <input id="senderNumber" placeholder="01XXXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label>ট্রানজেকশন আইডি</label>
+                <input id="transactionId" placeholder="TRX ID">
+            </div>
+        </div>
+        <button id="confirmOrderBtn" class="btn btn-primary btn-block">✅ অর্ডার কনফার্ম</button>
+    </div>
+</div>
+
+<div id="profileModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-user-circle"></i> আমার প্রোফাইল</h3>
+            <button class="modal-close" id="closeProfile">&times;</button>
+        </div>
+        <div class="profile-info" id="profileEmail"></div>
+        <button id="logoutBtn" class="btn btn-danger btn-block">🚪 লগআউট</button>
+    </div>
+</div>
+
+<div id="ordersModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-truck"></i> আমার অর্ডারসমূহ</h3>
+            <button class="modal-close" id="closeOrders">&times;</button>
+        </div>
+        <div id="ordersList"></div>
+    </div>
+</div>
+
+<div id="wishlistModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-heart"></i> আমার উইশলিস্ট</h3>
+            <button class="modal-close" id="closeWishlist">&times;</button>
+        </div>
+        <div id="wishlistItems"></div>
+    </div>
+</div>
+
+<button id="scrollTopBtn" class="scroll-top" style="display:none;">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>

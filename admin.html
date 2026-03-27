@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ShoppingMall.Com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin Panel Specific Styles */
+        .admin-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .admin-sidebar {
+            width: 280px;
+            background: white;
+            border-right: 1px solid var(--gray-light);
+            padding: 2rem 1rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        body.dark .admin-sidebar {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        
+        .admin-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+        
+        .admin-logo span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .admin-menu {
+            list-style: none;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .admin-menu a:hover,
+        .admin-menu a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .admin-main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .admin-header h1 {
+            font-size: 1.8rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .stat-card {
+            background: #1e293b;
+        }
+        
+        .stat-title {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .data-table {
+            background: white;
+            border-radius: 1rem;
+            overflow-x: auto;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        body.dark .data-table {
+            background: #1e293b;
+        }
+        
+        .data-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .data-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+        
+        body.dark .data-table th {
+            background: #334155;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: var(--warning); color: white; }
+        .status-processing { background: var(--primary); color: white; }
+        .status-shipped { background: var(--success); color: white; }
+        .status-delivered { background: var(--success); color: white; }
+        .status-cancelled { background: var(--danger); color: white; }
+        
+        .product-image-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                width: 70px;
+                padding: 1rem 0.5rem;
+            }
+            .admin-logo span,
+            .admin-menu a span {
+                display: none;
+            }
+            .admin-menu a i {
+                margin: 0 auto;
+            }
+            .admin-main {
+                margin-left: 70px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo" onclick="window.location.href='/'">
+                <i class="fas fa-store"></i>
+                <span>Admin</span>
+            </div>
+            <ul class="admin-menu">
+                <li><a href="#" data-page="dashboard" class="active"><i class="fas fa-chart-line"></i><span>ড্যাশবোর্ড</span></a></li>
+                <li><a href="#" data-page="orders"><i class="fas fa-truck"></i><span>অর্ডার</span></a></li>
+                <li><a href="#" data-page="products"><i class="fas fa-box"></i><span>পণ্য</span></a></li>
+                <li><a href="#" data-page="add-product"><i class="fas fa-plus-circle"></i><span>নতুন পণ্য</span></a></li>
+                <li><a href="#" data-page="users"><i class="fas fa-users"></i><span>ব্যবহারকারী</span></a></li>
+                <li><a href="/"><i class="fas fa-globe"></i><span>ওয়েবসাইট</span></a></li>
+            </ul>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 id="pageTitle">ড্যাশবোর্ড</h1>
+                <div class="admin-actions">
+                    <button class="icon-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="btn btn-danger btn-sm" id="logoutBtn">লগআউট</button>
+                </div>
+            </div>
+            <div id="pageContent"></div>
+        </main>
+    </div>
+    
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">নতুন পণ্য যোগ করুন</h3>
+                <button class="modal-close" id="closeProductModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>পণ্যের নাম</label>
+                <input type="text" id="productName" placeholder="পণ্যের নাম">
+            </div>
+            <div class="form-group">
+                <label>ক্যাটাগরি</label>
+                <select id="productCategory">
+                    <option value="clothing">পোশাক</option>
+                    <option value="electronics">ইলেকট্রনিক্স</option>
+                    <option value="accessories">এক্সেসরিজ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>মূল্য</label>
+                <input type="number" id="productPrice" placeholder="বর্তমান মূল্য">
+            </div>
+            <div class="form-group">
+                <label>পুরনো মূল্য</label>
+                <input type="number" id="productOldPrice" placeholder="আগের মূল্য">
+            </div>
+            <div class="form-group">
+                <label>ইমেজ URL</label>
+                <input type="text" id="productImage" placeholder="https://...">
+            </div>
+            <div class="form-group">
+                <label>সাইজ ও স্টক</label>
+                <div id="sizesContainer"></div>
+                <button type="button" class="btn btn-sm" id="addSizeBtn">+ আরো সাইজ</button>
+            </div>
+            <div class="form-group">
+                <label>বেজ</label>
+                <input type="text" id="productBadge" placeholder="সেল, বেস্ট সেলার">
+            </div>
+            <div class="form-group">
+                <label>রেটিং</label>
+                <input type="number" id="productRating" step="0.1" min="0" max="5" value="4.0">
+            </div>
+            <button class="btn btn-primary btn-block" id="saveProductBtn">সংরক্ষণ করুন</button>
+        </div>
+    </div>
+    
+    <!-- Order Status Modal -->
+    <div id="orderStatusModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>অর্ডার স্ট্যাটাস আপডেট</h3>
+                <button class="modal-close" id="closeOrderStatusModal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>স্ট্যাটাস</label>
+                <select id="orderStatusSelect">
+                    <option value="pending">pending</option>
+                    <option value="processing">processing</option>
+                    <option value="shipped">shipped</option>
+                    <option value="delivered">delivered</option>
+                    <option value="cancelled">cancelled</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>ট্র্যাকিং তথ্য</label>
+                <input type="text" id="orderTracking" placeholder="ট্র্যাকিং নম্বর">
+            </div>
+            <button class="btn btn-primary btn-block" id="updateOrderStatusBtn">আপডেট করুন</button>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
